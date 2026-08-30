@@ -1,0 +1,62 @@
+/* src/components/SidebarItem.css */
+.sidebar-item {
+  margin-bottom: 8px;
+  overflow: hidden;
+  /* Hide overflowing text when collapsed */
+  white-space: nowrap;
+}
+
+.sidebar-item a {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.sidebar-item a:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  /* Adjust icon size as needed */
+  height: 24px;
+  margin-right: 12px;
+  /* Space between icon and text */
+}
+
+.sidebar-item.collapsed .sidebar-icon {
+  margin-right: 0;
+  /* No margin when collapsed */
+}
+
+.sidebar-text {
+  flex-grow: 1;
+  /* Allow text to take up remaining space */
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.sidebar-item.collapsed .sidebar-text {
+  opacity: 0;
+  width: 0;
+  /* Collapse text width */
+  transition: opacity 0.1s ease-in-out, width 0.3s ease-in-out;
+}
+
+/* Specific styling for recent items */
+.sidebar-item.recent-item a {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.sidebar-item.recent-item a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}

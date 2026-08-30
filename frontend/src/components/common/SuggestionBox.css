@@ -1,0 +1,36 @@
+/* --- Suggestion Boxes Container --- */
+.suggestions-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow suggestions to wrap to the next line */
+  gap: 10px; /* Space between suggestion chips */
+  margin-bottom: 20px; /* Space below suggestions and above chat title/messages */
+  justify-content: center; /* Center the chips horizontally */
+  max-width: 900px; /* Match main chat area width */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Individual Suggestion Chip --- */
+.suggestion-chip {
+  background-color: #3e4043; /* Darker background for chips */
+  color: var(--color-text-light);
+  padding: 10px 18px; /* Comfortable padding */
+  border-radius: var(--border-radius-default); /* Consistent rounded corners */
+  cursor: pointer;
+  font-size: 0.95rem;
+  white-space: nowrap; /* Prevent text from wrapping within a chip */
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  border: 1px solid #5f6368; /* Subtle border */
+}
+
+.suggestion-chip:hover {
+  background-color: #5f6368; /* Slightly lighter on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.suggestion-chip:active {
+  transform: translateY(0); /* Return to original position on click */
+}
+
+

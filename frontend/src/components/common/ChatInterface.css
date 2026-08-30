@@ -1,0 +1,183 @@
+/* --- Chat Interface Wrapper (added for better structure) --- */
+.chat-interface { /* Added a new class for the chat container */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allows chat to fill available height within main-content */
+  max-width: 900px; /* Slightly wider chat area */
+  width: 100%;
+  margin: 0 auto; /* Center the chat horizontally */
+}
+
+
+/* --- Chat Title --- */
+.chat-title {
+  user-select: none;
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 24px;
+  text-align: center;
+  background-image: linear-gradient(to right, #4CAF50, #2196F3); 
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --- Messages Container --- */
+.messages {
+  flex: 1; /* Allow messages to grow and fill space, pushing input to bottom */
+  max-width: 100%; /* Max width relative to its parent (chat-interface) */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Increased gap between messages */
+  overflow-y: auto; /* Enable scrolling for messages */
+  padding: 10px; /* Padding inside the messages box */
+  box-sizing: border-box; /* Include padding in dimensions */
+  border-radius: var(--border-radius-default);
+  /* background-color: #333; Uncomment if you want a background for the message area */
+}
+
+/* --- Individual Message Bubbles --- */
+.message {
+  max-width: 75%; /* Slightly less wide to allow for more visual spacing */
+  padding: 12px 18px; /* Slightly more padding */
+  border-radius: var(--border-radius-default); /* Consistent border-radius */
+  word-break: break-word;
+  font-size: 1rem;
+  line-height: 1.4; /* Improve readability */
+  margin-bottom: 0; /* Gap is handled by flexbox gap on .messages */
+}
+
+.message.user {
+  background-color: #4285f4; /* A brighter blue for user messages (Google's primary blue) */
+  color: white;
+  align-self: flex-end; /* Keeps user messages on the right */
+}
+
+.message.bot {
+  background-color: #4a4b4e; /* A softer dark grey for bot messages */
+  color: var(--color-text-light);
+  align-self: flex-start; /* Keeps bot messages on the left */
+}
+
+/* --- Chat Form (Input Area) --- */
+.chat-form {
+  max-width: 100%; /* Max width relative to its parent (chat-interface) */
+  width: 100%;
+  display: flex;
+  gap: 10px; /* Slightly increased gap */
+  align-items: center;
+  margin-top: 15px; /* Space above the form */
+  padding-bottom: 15px; /* Padding for the bottom of the form */
+  /* Remove justify-content: center; if you want input to span full width */
+}
+
+.chat-input {
+  flex: 1;
+  min-height: 50px; /* Taller input field */
+  max-height: 150px; /* Allow more lines of text */
+  padding: 12px 20px; /* Adjust padding for better look */
+  font-size: 1rem;
+  border-radius: var(--border-radius-default); /* Consistent rounding */
+  border: 1px solid #5f6368; /* Softer border for dark mode */
+  background-color: #333437; /* Darker input background */
+  color: var(--color-text-light);
+  resize: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.chat-input::placeholder {
+  color: #9aa0a6; /* Softer placeholder color */
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--color-primary); /* Highlight with Google blue on focus */
+}
+
+.chat-send {
+  background-color: var(--color-primary); /* Use primary color variable */
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-default);
+  padding: 12px 24px; /* Consistent padding */
+  font-size: 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out; /* Renamed from background for consistency */
+  display: flex; /* For potential icon later */
+  align-items: center;
+  justify-content: center;
+}
+.chat-send:disabled {
+    background-color: rgb(128, 128, 128);
+    cursor: not-allowed;
+}
+
+.chat-send:hover {
+  background-color: #3367d6; /* Darker shade of blue on hover */
+}
+
+.chat-send:disabled:hover {
+  background-color: rgb(49, 49, 49); /* Darker shade of blue on hover */
+}
+
+/* --- Scrollbar Styling (Kept as is, it's good) --- */
+.chat-input::-webkit-scrollbar {
+  width: 6px;
+  height: 6px; /* For horizontal scrollbar if needed */
+}
+
+.chat-input::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-input::-webkit-scrollbar-thumb {
+  background-color: #5f6368; /* Darker scrollbar thumb for dark mode */
+  border-radius: 3px; /* Simpler border-radius for scroll thumb */
+  border: none; /* No border for scroll thumb */
+}
+
+.chat-input::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) { /* Adjusted breakpoint slightly for tablets */
+  :root {
+    --sidebar-width: 220px; /* Slightly narrower on smaller screens if expanded */
+    --sidebar-width-collapsed: 60px; /* Keep consistent */
+  }
+
+  .main-content {
+    padding: 16px; /* Less padding on smaller screens */
+  }
+
+  /* Removed duplicate .chat-title gradient here */
+
+  .messages,
+  .chat-form {
+    max-width: 100%; /* Let them take full width on mobile, no side margins */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .chat-form {
+    flex-wrap: wrap; /* Allow input and send button to wrap */
+    justify-content: stretch; /* Stretch items when wrapped */
+  }
+
+  .chat-input {
+    min-height: 45px; /* Slightly smaller input */
+  }
+
+  .chat-send {
+    width: 100%; /* Make send button full width when wrapped */
+    margin-top: 5px; /* Add some space above it */
+  
+}
+
+}

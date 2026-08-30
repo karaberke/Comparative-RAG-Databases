@@ -1,0 +1,264 @@
+/* --- Sidebar Container --- */
+.sidebar {
+  width: var(--sidebar-width);
+  /* Default width (e.g., 250px) */
+  background-color: var(--color-secondary);
+  /* Light background, e.g., #f0f4f9 */
+  padding: 16px;
+  box-shadow: var(--shadow-subtle);
+  transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  /* Ensures it stays in place */
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  color: var(--color-text-dark);
+  /* Dark text color for the sidebar */
+  box-sizing: border-box;
+  /* Crucial for consistent padding/width calculations */
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-width-collapsed);
+  /* Collapsed width (e.g., 70px) */
+  padding: 16px 10px;
+  align-items: center;
+  /* Centers content horizontally when collapsed */
+}
+
+/* --- Sidebar Header --- */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+  /* Space between menu button and New Chat */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar.collapsed .sidebar-header {
+  justify-content: center;
+  /* Centers the menu button when collapsed */
+  margin-bottom: 25px;
+  /* Added spacing from previous version for visual balance */
+}
+
+/* --- Menu Button (Tribar Icon) --- */
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out;
+  color: var(--color-text-dark);
+  /* Icon color */
+  flex-shrink: 0;
+  /* Prevents it from shrinking */
+}
+
+.menu-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  /* Light hover effect */
+}
+
+.menu-button svg {
+  font-size: 24px;
+  /* Default icon size */
+}
+
+/* Existing .new-chat-button styles */
+.new-chat-button {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-accent-green);
+  color: var(--color-text-dark);
+  padding: 10px 15px;
+  border-radius: var(--border-radius-default);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.5s ease-in-out, transform 0.1s ease-out;
+  box-shadow: var(--shadow-subtle);
+  overflow: hidden;
+  max-width: 200px;
+  /* Original transition on max-width and padding for sidebar collapse */
+  transition: max-width 0.3s ease-in-out, padding 0.3s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+.new-chat-button:hover {
+  background-color: #729e32;
+}
+
+/* This is the key part for the click effect */
+.new-chat-button:active {
+  transform: scale(0.95);
+  /* Slightly shrink on click */
+  background-color: #648b2c;
+  /* Darker green on click */
+}
+
+.new-chat-button svg {
+  margin-right: 8px;
+  transition: margin-right 0.3s ease-in-out;
+  flex-shrink: 0;
+}
+
+/* Styles when sidebar is collapsed */
+.sidebar.collapsed .new-chat-button {
+  max-width: 44px;
+  padding: 10px;
+  justify-content: center;
+}
+
+.sidebar.collapsed .new-chat-button svg {
+  margin-right: 0;
+}
+
+.new-chat-button span {
+  transition: opacity 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.sidebar.collapsed .new-chat-button span {
+  opacity: 0;
+}
+
+/* --- Navigation Section --- */
+.sidebar-nav {
+  flex-grow: 1;
+  /* Allows nav to take up remaining space */
+  overflow-y: auto;
+  /* Enable scrolling if too many items */
+  padding-right: 5px;
+  /* Little padding for scrollbar */
+  padding-bottom: 10px;
+  /* Small buffer from footer */
+}
+
+.sidebar-nav ul,
+.sidebar-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* --- Sidebar Footer --- */
+.sidebar-footer {
+  margin-top: auto;
+  /* Pushes the footer to the bottom */
+  border-top: 1px solid var(--color-border);
+  /* Subtle separator */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* Reduced from 30px to maintain consistent internal padding */
+}
+
+/* --- Recent Items List (Scrollable) --- */
+.recent-items-list {
+  max-height: 200px;
+  /* Max height for scrollable recent items */
+  overflow-y: auto;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  /* Subtle separator */
+  /* Hide scrollbar for recent items list - cross-browser */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.recent-items-list::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+/* --- Sidebar Item (Individual Navigation Link) --- */
+.sidebar-item {
+  margin-bottom: 8px;
+  overflow: hidden;
+  /* Crucial for hiding sliding text effect */
+  white-space: nowrap;
+}
+
+.sidebar-item a {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: var(--border-radius-default);
+  color: var(--color-text-dark);
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.sidebar-item a:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  /* Corrected from red to black rgba */
+}
+
+.sidebar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  /* Prevents icon from shrinking */
+  margin-right: 12px;
+  /* Fixed margin when expanded */
+  transition: margin-right 0.3s ease-out;
+  /* Transition for icon margin */
+
+}
+
+.sidebar.collapsed .sidebar-icon {
+  margin-right: 0;
+  /* Remove margin when collapsed */
+}
+
+.sidebar-text {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  /* Hide overflow immediately */
+  text-overflow: ellipsis;
+  /* Adds "..." if text is too long */
+
+  /* Use max-width for the text fading/sliding effect */
+  max-width: 100%;
+  /* Default max-width when expanded */
+  opacity: 1;
+
+  /* Combined transition for text visibility */
+  transition: max-width 0.3s ease-out, opacity 0.2s ease-out;
+  /* Sync with sidebar collapse */
+}
+
+.sidebar.collapsed .sidebar-text {
+  max-width: 0;
+  /* Collapse text width */
+  opacity: 0;
+  /* Slower opacity fade for the text helps smooth out the disappearance */
+  transition: max-width 0.3s ease-out, opacity 0.15s ease-out;
+}
+
+/* Specific styling for recent items */
+.sidebar-item.recent-item a {
+  padding: 8px 12px;
+  font-size: 0.9em;
+  color: #555;
+  /* Slightly muted text for recent items */
+}
+
+.sidebar-item.recent-item a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}

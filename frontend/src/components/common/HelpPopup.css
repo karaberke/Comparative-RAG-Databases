@@ -1,0 +1,111 @@
+/* src/components/HelpPopup.css */
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* This is the overlay, keep it dark */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  /* ⭐️ IMPORTANT: Override with explicit light background and dark text */
+  background-color: #ffffff; /* Solid white background for the popup content */
+  color: #333333; /* Dark grey text color for readability */
+
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  animation: fadeInScale 0.3s ease-out forwards;
+}
+
+.popup-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666666; /* Darker grey for the close icon */
+  transition: color 0.2s ease;
+}
+
+.popup-close-button:hover {
+  color: #007bff; /* Example hover color for the close icon */
+}
+
+.popup-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #0056b3; /* A distinct accent color for headings, like a medium blue */
+}
+
+.popup-content p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* Optional: Add a simple animation for the popup */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.message.bot p {
+    margin-bottom: 0.5em; /* Space between paragraphs */
+}
+
+.message.bot ul,
+.message.bot ol {
+    margin-left: 1.5em;
+    padding-left: 0;
+    margin-bottom: 0.5em;
+}
+
+.message.bot li {
+    margin-bottom: 0.2em;
+}
+
+.message.bot strong {
+    font-weight: bold;
+}
+
+.message.bot em {
+    font-style: italic;
+}
+
+.message.bot code {
+    background-color: #eee;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+    color:black;
+    font-size: 0.9em;
+}
+
+.message.bot pre {
+    background-color: #f0f0f0;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+
